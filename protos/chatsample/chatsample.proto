@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "github.com/hakuna86/grpc-sample/protos/chatsample";
+
+package chatsample;
+
+import "google/protobuf/empty.proto";
+import "common/common.proto";
+
+service RpcService {
+    rpc Chat(stream common.ChatMessage) returns (stream common.ChatMessage) {}
+    rpc Push(google.protobuf.Empty) returns (stream Code) {}
+}
+
+enum Process {
+    MAKE_BLOCK = 0;
+}
+
+message Code {
+    Process code = 1;
+}
